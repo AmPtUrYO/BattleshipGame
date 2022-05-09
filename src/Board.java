@@ -1,3 +1,5 @@
+import GameUnit.Symbol;
+
 import java.util.Arrays;
 
 public class Board {
@@ -13,11 +15,29 @@ public class Board {
 
     private void addWater() {
         for (char[] row : gameBoard) {
-            Arrays.fill(row, '~');
+            Arrays.fill(row, Symbol.WATER.getSym());
         }
     }
 
     public char[][] getBoard() {
         return gameBoard;
+    }
+
+    public void displayBoard() {
+        char c = 'A';
+        System.out.print("   ");
+        for (int j = 0; j < gameBoard.length; j++) {
+            System.out.printf("%-3s", c);
+            c++;
+        }
+        System.out.println();
+        for (int i = 0; i < gameBoard.length; i++) {
+            System.out.printf("%-3s", i + 1);
+            for (int j = 0; j < gameBoard[i].length; j++) {
+                System.out.printf("%-3s", gameBoard[i][j]);
+                //System.out.print("  ");
+            }
+            System.out.println("");
+        }
     }
 }

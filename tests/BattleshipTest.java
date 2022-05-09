@@ -20,4 +20,10 @@ public class BattleshipTest {
                     {'~','~','~','~','~','~','~','~','~','~',}};
         Assert.assertArrayEquals(a, testBoard.getBoard());
     }
+
+    @Test
+    public void testShip(){
+        Ship testShip = new Ship(3);
+        Assert.assertEquals(3, testShip.getLength());
+    }
 }

@@ -8,22 +8,22 @@ public class Battleship implements GameUI{
     public void placeShip(Board board, Ship ship, int x, int y)
             throws AlreadyPlacedException, OutOfBoardException {
         // horizontal
-        if (y + ship.getLength() > board.getBoard().length || y < 0) {
+        if (checkIfOutside(board, x, y + ship.getLength())) {
             throw new OutOfBoardException();
         }
-        if(board.getBoard()[x][y] != '~'){ // für gesamte Länge
+        if(board.getBoard()[x][y] != '~' || board.getBoard()[x][y + ship.getLength()] != '~' ){
             throw new AlreadyPlacedException();
         }
 
         for (int i = 0; i < ship.getLength(); i++) {
             board.getBoard()[x][y + i] = '#';
         }
-        // vertical?
+        // vertical? adjust AlreadyPlacedException for horizontal
     }
 
     public boolean shoot(Board ownBoard, Board opponentBoard, int x, int y)
             throws OutOfBoardException, AlreadyPlacedException{
-        if(x >= ownBoard.getBoard().length){
+        if(checkIfOutside(ownBoard, x, y)){
             throw new OutOfBoardException();
         }
         if(ownBoard.getBoard()[x][y] != Symbol.WATER.getSymbol()){
@@ -41,8 +41,12 @@ public class Battleship implements GameUI{
 
     }
 
-    public int charToInt(char y){
+    public int charToInt(char y){ // in App?
         return (int) y - 65;
+    }
+
+    private static boolean checkIfOutside(Board board, int x, int y){
+        return (x >= board.getBoard().length) || (y >= board.getBoard().length) || x < 0 || y < 0;
     }
 
 }

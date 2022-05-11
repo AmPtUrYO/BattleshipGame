@@ -10,7 +10,7 @@ public enum Symbol {
     private Symbol(char sym){
         this.sym = sym;
     }
-    public char getSym(){
+    public char getSymbol(){
         return sym;
     }
 }

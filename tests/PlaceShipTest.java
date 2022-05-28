@@ -5,7 +5,7 @@ import org.junit.Test;
 public class PlaceShipTest {
     @Test
     public void placeShip() throws AlreadyPlacedException, OutOfBoardException {
-        Battleship game = new Battleship();
+        BattleshipGame game = new BattleshipGame(10, 1);
         Board testBoard = new Board(10);
         Ship testShip = new Ship(3);
         game.placeShip(testBoard,testShip,0,0);
@@ -24,7 +24,7 @@ public class PlaceShipTest {
 
     @Test
     public void placeTwoShips() throws AlreadyPlacedException, OutOfBoardException{
-        Battleship game = new Battleship();
+        BattleshipGame game = new BattleshipGame(10, 1);
         Board testBoard = new Board(10);
         Ship testShip = new Ship(3);
         Ship testShip2 = new Ship(3);
@@ -45,7 +45,7 @@ public class PlaceShipTest {
 
     @Test (expected = AlreadyPlacedException.class)
     public void placeTwoShipsOnTop() throws AlreadyPlacedException, OutOfBoardException {
-        Battleship game = new Battleship();
+        BattleshipGame game = new BattleshipGame(10, 1);
         Board testBoard = new Board(10);
         Ship testShip = new Ship(3);
         Ship testShip2 = new Ship(3);
@@ -55,7 +55,7 @@ public class PlaceShipTest {
 
     @Test (expected = OutOfBoardException.class)
     public void placeShipOutside() throws AlreadyPlacedException, OutOfBoardException {
-        Battleship game = new Battleship();
+        BattleshipGame game = new BattleshipGame(10, 1);
         Board testBoard = new Board(10);
         Ship testShip = new Ship(3);
         game.placeShip(testBoard, testShip, 0, 7);
@@ -63,10 +63,15 @@ public class PlaceShipTest {
 
     @Test (expected = OutOfBoardException.class)
     public void placeShipOutside2() throws AlreadyPlacedException, OutOfBoardException {
-        Battleship game = new Battleship();
+        BattleshipGame game = new BattleshipGame(10, 1);
         Board testBoard = new Board(10);
         Ship testShip = new Ship(3);
         game.placeShip(testBoard, testShip, 10, 0);
+    }
+
+    @Test
+    public void placeShipOutside3() throws AlreadyPlacedException, OutOfBoardException{
+
     }
 
 }

@@ -13,7 +13,7 @@ public interface GameUI {
 // hidden: display every '#' as '~'
 
 // actions:
-// place shipts (define size and number)
+// place ships (define size and number)
 // shoot: out of board exception, bereits getroffen exception
 
 // Status: Player A, Player B

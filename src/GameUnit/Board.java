@@ -4,6 +4,7 @@ import java.util.Arrays;
 public class Board {
     private final char[][] gameBoard;
     private int boardSize;
+    public int ships = 0;
 
     public Board(int boardSize) {
         //Exeption: size restrictions

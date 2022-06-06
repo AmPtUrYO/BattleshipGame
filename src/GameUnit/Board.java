@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Board {
     private final char[][] gameBoard;
     private int boardSize;
-    public int ships = 0;
+    private int ships = 0;
 
     public Board(int boardSize) {
         //Exeption: size restrictions
@@ -39,5 +39,17 @@ public class Board {
             }
             System.out.println("");
         }
+    }
+
+    public int shipsLeft(){
+        return ships;
+    }
+
+    public void addShips(int length){
+        this.ships += length;
+    }
+
+    public void hitShip(){
+        this.ships--;
     }
 }

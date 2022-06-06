@@ -20,6 +20,7 @@ public class PlaceShipTest {
                 {'~','~','~','~','~','~','~','~','~','~',},
                 {'~','~','~','~','~','~','~','~','~','~',}};
         Assert.assertArrayEquals(a, testBoard.getBoard());
+        Assert.assertEquals(3, testBoard.shipsLeft());
     }
 
     @Test
@@ -41,6 +42,7 @@ public class PlaceShipTest {
                 {'~','~','~','~','~','~','~','~','~','~',},
                 {'~','~','~','~','~','~','~','~','~','~',}};
         Assert.assertArrayEquals(a, testBoard.getBoard());
+        Assert.assertEquals(6, testBoard.shipsLeft());
     }
 
     @Test (expected = AlreadyPlacedException.class)

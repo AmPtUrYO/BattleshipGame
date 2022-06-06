@@ -2,20 +2,12 @@ package GameUnit;
 
 public class BattleshipGame implements GameUI{
 
-    public Board player1Board;
-    public Board player2Board;
-    public Ship[] player1Ships;
-    public Ship[] player2Ships;
+    private final Player player1;
+    private final Player player2;
 
     public BattleshipGame (int boardSize, int numberOfShips){
-        player1Board = new Board(boardSize);
-        player2Board = new Board(boardSize);
-        player1Ships = new Ship[numberOfShips];
-        player2Ships = new Ship[numberOfShips];
-        for (int i = 0; i < numberOfShips; i++){
-            player1Ships[i] = new Ship(i + 2);
-            player2Ships[i] = new Ship(i + 2);
-        }
+        this.player1 = new Player(boardSize, numberOfShips);
+        this.player2 = new Player(boardSize, numberOfShips);
     }
 
     public void placeShip(Board board, Ship ship, int x, int y)
@@ -31,7 +23,7 @@ public class BattleshipGame implements GameUI{
         for (int i = 0; i < ship.getLength(); i++) {
             board.getBoard()[x][y + i] = '#';
         }
-        board.ships += ship.getLength();
+        board.addShips(ship.getLength());
         // vertical? adjust AlreadyPlacedException for horizontal
     }
 
@@ -46,7 +38,7 @@ public class BattleshipGame implements GameUI{
         if(opponentBoard.getBoard()[x][y] == Symbol.SHIP.getSymbol()){
             ownBoard.getBoard()[x][y] = Symbol.HIT.getSymbol();
             opponentBoard.getBoard()[x][y] = Symbol.HIT.getSymbol();
-            opponentBoard.ships--;
+            opponentBoard.hitShip();
             return true;
         }else{
             ownBoard.getBoard()[x][y] = Symbol.MISS.getSymbol();
@@ -56,9 +48,18 @@ public class BattleshipGame implements GameUI{
 
     }
 
-
     private static boolean checkIfOutside(Board board, int x, int y){
         return (x >= board.getBoard().length) || (y >= board.getBoard().length);
+    }
+
+    public Player getPlayer(int number) {
+        if(number == 1){
+            return player1;
+        }else if(number == 2){
+            return player2;
+        }else{
+            return player1;
+        }
     }
 
 }

@@ -62,4 +62,44 @@ public class StartGameTest {
         Assert.assertArrayEquals(new int[] {0,0}, test);
     }
 
+    @Test
+    public void testGetUserInput3(){
+        String data = "1a";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        int[] test = getUserInput();
+        Assert.assertArrayEquals(new int[] {0,0}, test);
+    }
+
+    @Test
+    public void testGetUserInput4(){
+        String data = "123";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        int[] test = getUserInput();
+        Assert.assertArrayEquals(new int[] {122,-1}, test);
+    }
+
+    @Test
+    public void testGetUserInput5(){
+        String data = "a";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        int[] test = getUserInput();
+        Assert.assertArrayEquals(new int[] {-1,0}, test);
+    }
+
+    @Test
+    public void testGetUserInput6(){
+        String data = ".";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        int[] test = getUserInput();
+        Assert.assertArrayEquals(new int[] {-1,-1}, test);
+    }
+
+    @Test
+    public void testGetUserInput7(){
+        String data = "abc";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        int[] test = getUserInput();
+        Assert.assertArrayEquals(new int[] {-1,-1}, test);
+    }
+
 }

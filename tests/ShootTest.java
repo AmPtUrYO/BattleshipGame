@@ -76,6 +76,7 @@ public class ShootTest {
         game.placeShip(opponentBoard, testShip, 0, 0);
         game.shoot(ownBoard, opponentBoard, 0, 0);
         game.shoot(ownBoard, opponentBoard, 0, 0);
+        Assert.fail();
     }
 
     @Test (expected = OutOfBoardException.class)
@@ -84,6 +85,7 @@ public class ShootTest {
         Board ownBoard = new Board(10);
         Board opponentBoard = new Board(10);
         game.shoot(opponentBoard, ownBoard,10,0);
+        Assert.fail();
     }
 
     @Test (expected = OutOfBoardException.class)
@@ -92,5 +94,6 @@ public class ShootTest {
         Board ownBoard = new Board(10);
         Board opponentBoard = new Board(10);
         game.shoot(opponentBoard, ownBoard,0,10);
+        Assert.fail();
     }
 }

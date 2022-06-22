@@ -51,14 +51,21 @@ public class StartGame {
         int[] coordinates = new int[2];
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+        int y;
+        int x;
 
-        if(input.length() > 3){
-            System.out.println("wrong input, try again");
-            getUserInput();
+        String letter = input.toUpperCase().replaceAll("[^a-zA-Z]", "");
+        if(letter.length() == 1){
+            y = charToInt(letter.charAt(0));
+        }else{
+            y = -1;
         }
-
-        int y = charToInt(input.toUpperCase().charAt(0));
-        int x = Integer.parseInt(input.replaceAll("[\\D]", "")) - 1;
+        String number = input.replaceAll("[\\D]", "");
+        if(number.length() > 0){
+            x = Integer.parseInt(number) - 1;
+        }else{
+            x = -1;
+        }
         coordinates[0] = x;
         coordinates[1] = y;
         return coordinates;
@@ -83,6 +90,7 @@ public class StartGame {
                 break;
             } catch (AlreadyPlacedException | OutOfBoardException e) {
                 e.printStackTrace();
+                System.out.println("Wrong user input. Please enter a letter between A and " + "J" + "and a number between 1 and " + game.getPlayer(1).getOwnBoard().getBoardSize());
             }
         }
 

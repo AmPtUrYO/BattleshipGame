@@ -53,6 +53,7 @@ public class PlaceShipTest {
         Ship testShip2 = new Ship(3);
         game.placeShip(testBoard, testShip, 0, 0);
         game.placeShip(testBoard, testShip2, 0, 2);
+        Assert.fail();
     }
 
     @Test (expected = OutOfBoardException.class)
@@ -61,6 +62,7 @@ public class PlaceShipTest {
         Board testBoard = new Board(10);
         Ship testShip = new Ship(3);
         game.placeShip(testBoard, testShip, 0, 7);
+        Assert.fail();
     }
 
     @Test (expected = OutOfBoardException.class)
@@ -69,6 +71,7 @@ public class PlaceShipTest {
         Board testBoard = new Board(10);
         Ship testShip = new Ship(3);
         game.placeShip(testBoard, testShip, 10, 0);
+        Assert.fail();
     }
 
     @Test

@@ -52,4 +52,6 @@ public class Board {
     public void hitShip(){
         this.ships--;
     }
+
+    public int getBoardSize(){return boardSize;}
 }

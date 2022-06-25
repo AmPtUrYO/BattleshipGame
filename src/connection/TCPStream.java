@@ -84,6 +84,57 @@ public class TCPStream extends Thread {
         }
     }
 
+    public void waitForConnection() throws IOException {
+        if(this.createThread == null) {
+            /* in unit tests there is a race condition between the test
+            thread and those newly created tests to establish a connection.
+
+            Thus, this call could be in the right order - give it a
+            second chance
+            */
+
+            try {
+                Thread.sleep(this.WAIT);
+            } catch (InterruptedException ex) {
+                // ignore
+            }
+
+            if(this.createThread == null) {
+                // that's probably wrong usage:
+                throw new IOException("must start TCPChannel thread first by calling start()");
+            }
+        }
+
+
+        while(!this.fatalError && this.socket == null) {
+            try {
+                Thread.sleep(this.WAIT);
+            } catch (InterruptedException ex) {
+                // ignore
+            }
+        }
+    }
+
+    public void checkConnected() throws IOException {
+        if(this.socket == null) {
+            //<<<<<<<<<<<<<<<<<<debug
+            String s = "no socket yet - should call connect first";
+            System.out.println(s);
+            //>>>>>>>>>>>>>>>>>>>debug
+            throw new IOException(s);
+        }
+    }
+
+    public InputStream getInputStream() throws IOException {
+        this.checkConnected();
+        return this.socket.getInputStream();
+    }
+
+    public OutputStream getOutputStream() throws IOException {
+        this.checkConnected();
+        return this.socket.getOutputStream();
+    }
+
     private class TCPServer {
         private ServerSocket srvSocket = null;
 

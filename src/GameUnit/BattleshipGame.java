@@ -48,7 +48,7 @@ public class BattleshipGame implements GameUI{
 
     }
 
-    private static boolean checkIfOutside(Board board, int x, int y){
+    public static boolean checkIfOutside(Board board, int x, int y){
         return (x >= board.getBoard().length) || (y >= board.getBoard().length);
     }
 

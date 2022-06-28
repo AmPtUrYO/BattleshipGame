@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 public class Connection implements ReadThreadListener{
     private InputStream is;
     private OutputStream os;
+    private String message;
 
     public void streamCreated(TCPStream channel) {
         try {
@@ -23,23 +24,28 @@ public class Connection implements ReadThreadListener{
         }
     }
 
-    public void sendMessage(byte messageByte) {
+    public void sendMessage(String message) {
         try {
-            this.os.write(messageByte);
+            //this.os.write(messageByte);
             PrintWriter writer = new PrintWriter(os, true);
-            writer.println("test");
+            writer.println(message);
         } catch (Exception e) {
             System.err.println("fatal: cannot send message: " + e.getLocalizedMessage());
         }
     }
 
     @Override
-    public void recognizedMessage(byte message) {
+    public void recognizedMessage(String message) {
         System.out.println(message);
+        this.message = message;
     }
 
     @Override
     public void connectionClosed() {
         this.is = null; this.os = null;
+    }
+
+    public String getLastMessage(){
+        return message;
     }
 }

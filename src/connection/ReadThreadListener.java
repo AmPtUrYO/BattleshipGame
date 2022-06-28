@@ -5,7 +5,7 @@ public interface ReadThreadListener {
      * Tell listener message received
      * @param message
      */
-    void recognizedMessage(byte message);
+    void recognizedMessage(String message);
 
     /**
      * Tell listener: connection closed

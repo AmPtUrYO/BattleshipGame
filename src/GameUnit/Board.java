@@ -54,4 +54,12 @@ public class Board {
     }
 
     public int getBoardSize(){return boardSize;}
+
+    public void hit(int[] coordinates){
+        gameBoard[coordinates[0]][coordinates[1]] = Symbol.HIT.getSymbol();
+    }
+
+    public void miss(int[] coordinates){
+        gameBoard[coordinates[0]][coordinates[1]] = Symbol.MISS.getSymbol();
+    }
 }

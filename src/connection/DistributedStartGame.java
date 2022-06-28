@@ -80,25 +80,28 @@ public class DistributedStartGame extends StartGame {
     public static int turn(BattleshipGame game, int playerOnTurn, Connection connection, int player){
         int otherPlayer = playerOnTurn == 1 ? 2 : 1;
         System.out.println("Player " + playerOnTurn + " shoot");
-        connection.sendMessage("Player " + playerOnTurn + " shoot");
-        String message;
-        int[] coordinates;
+        //connection.sendMessage("Player " + playerOnTurn + " shoot");
+        String message= connection.getLastMessage();
+        int[] coordinates = null;
 
         if(playerOnTurn == player){ // player shoots
             System.out.println("your turn");
 
-            while (true){
+            while (!message.equals("Hit!") && !message.equals("miss!")){
                 coordinates = getUserInput();
                 connection.sendMessage(intToString(coordinates));
                 message = connection.getLastMessage();
-                if(message.equals("Hit!") || message.equals("miss!")){
+                /*if(message.length() < 6){ //message.equals("Hit!") || message.equals("miss!")
                     break;
+                }*/
                 }
-                }
+            System.out.println("do you ever get here");
             if(message.equals("Hit!")){
                 game.getPlayer(player).getOpponentBoard().hit(coordinates);
+                System.out.println("hello");
             }else {
                 game.getPlayer(player).getOpponentBoard().miss(coordinates);
+                System.out.println("where you");
             }
 
             System.out.println("opponent board");

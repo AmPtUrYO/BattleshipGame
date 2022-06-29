@@ -87,21 +87,16 @@ public class DistributedStartGame extends StartGame {
         if(playerOnTurn == player){ // player shoots
             System.out.println("your turn");
 
-            while (!message.equals("Hit!") && !message.equals("miss!")){
+            while (!message.equals("Hit!") && !message.equals("miss!")){ //bug here
                 coordinates = getUserInput();
                 connection.sendMessage(intToString(coordinates));
                 message = connection.getLastMessage();
-                /*if(message.length() < 6){ //message.equals("Hit!") || message.equals("miss!")
-                    break;
-                }*/
                 }
-            System.out.println("do you ever get here");
+
             if(message.equals("Hit!")){
                 game.getPlayer(player).getOpponentBoard().hit(coordinates);
-                System.out.println("hello");
             }else {
                 game.getPlayer(player).getOpponentBoard().miss(coordinates);
-                System.out.println("where you");
             }
 
             System.out.println("opponent board");
@@ -131,6 +126,9 @@ public class DistributedStartGame extends StartGame {
                 }
 
             }
+            /*while (!message.equals(intToString(coordinates))){
+                message = connection.getLastMessage();
+            }*/
 
     }
         System.out.println("own Board");
